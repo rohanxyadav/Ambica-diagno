@@ -62,14 +62,17 @@ export const paymentsAPI = {
 
 export const reportsAPI = {
   getMy: () => api.get('/reports'),
+  getAll: () => api.get('/reports/all'),
   upload: (formData) => api.post('/reports/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   }),
-  download: (id) => api.get(`/reports/${id}/download`),
+  download: (id) => api.get(`/reports/${id}/download`, { responseType: 'blob' }),
+  delete: (id) => api.delete(`/reports/${id}`),
 };
 
 export const adminAPI = {
   getStats: () => api.get('/admin/stats'),
   getUsers: () => api.get('/admin/users'),
   seedData: () => api.post('/admin/seed-data'),
+  searchPatients: (query) => api.get('/admin/search-patients', { params: { query } }),
 };
