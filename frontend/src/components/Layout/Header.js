@@ -130,6 +130,17 @@ export const Header = () => {
                 {link.name}
               </Link>
             ))}
+            {userNavLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="block py-2 text-slate-600 hover:text-[#023E8A]"
+                onClick={() => setMobileMenuOpen(false)}
+                data-testid={`mobile-nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
+              >
+                {link.name}
+              </Link>
+            ))}
             {user ? (
               <>
                 <Link
