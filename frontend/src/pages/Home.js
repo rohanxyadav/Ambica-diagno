@@ -195,18 +195,18 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-primary text-white">
+      <section className="py-16 md:py-24 bg-[#2A7DE1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6 text-white">
             Ready to Get Started?
           </h2>
-          <p className="text-lg mb-8 text-blue-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 text-white max-w-2xl mx-auto">
             Book your appointment now and experience world-class diagnostic services
           </p>
           <Link to="/book-appointment" data-testid="cta-footer-book">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-blue-50 px-8 py-3 text-base">
+            <Button size="lg" className="bg-white text-[#2A7DE1] hover:bg-gray-100 px-12 py-6 text-xl font-bold shadow-xl border-2 border-white">
               Book Appointment Now
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-3 w-6 h-6" />
             </Button>
           </Link>
         </div>
