@@ -82,11 +82,11 @@ const Home = () => {
               </div>
               <div className="flex items-center gap-8 pt-4">
                 <div>
-                  <p className="text-3xl font-bold text-primary">50+</p>
-                  <p className="text-sm text-slate-600">Diagnostic Tests</p>
+                  <p className="text-3xl font-bold text-primary">21+</p>
+                  <p className="text-sm text-slate-600">Years Experience</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-primary">10K+</p>
+                  <p className="text-3xl font-bold text-primary">3Lacs+</p>
                   <p className="text-sm text-slate-600">Happy Patients</p>
                 </div>
                 <div>
