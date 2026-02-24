@@ -112,10 +112,10 @@ const MyReports = () => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
 
-      <div className="pt-24 pb-16">
+      <div className="pt-24 pb-16 page-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="mb-8">
