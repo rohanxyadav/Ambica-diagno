@@ -15,6 +15,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import MyReports from './pages/MyReports';
 import './App.css';
+import './animations.css';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
