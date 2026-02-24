@@ -89,6 +89,18 @@ class Membership(BaseModel):
     free_home_collection: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class AppointmentCreate(BaseModel):
+    user_name: str
+    user_email: str
+    user_phone: str
+    test_type: str
+    test_id: str
+    test_name: str
+    date: str
+    time_slot: Optional[str] = None
+    payment_mode: str
+    amount: float
+
 class Appointment(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
