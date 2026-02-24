@@ -60,6 +60,16 @@ export const Header = () => {
                 {link.name}
               </Link>
             ))}
+            {userNavLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="text-slate-600 hover:text-[#023E8A] transition-colors font-medium"
+                data-testid={`nav-link-${link.name.toLowerCase().replace(' ', '-')}`}
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
