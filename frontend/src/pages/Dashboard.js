@@ -183,41 +183,74 @@ const Dashboard = () => {
 
             <div>
               <h2 className="text-2xl font-heading font-semibold text-foreground mb-6">
-                Test Reports
+                My Reports
               </h2>
 
               {reports.length === 0 ? (
                 <Card className="p-8 text-center">
                   <FileText className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                  <p className="text-slate-600">No reports available yet</p>
+                  <p className="text-slate-600 mb-2">No reports available yet</p>
+                  <p className="text-sm text-slate-500">Reports will appear here once your tests are completed</p>
                 </Card>
               ) : (
                 <div className="grid md:grid-cols-2 gap-4">
                   {reports.map((report) => (
                     <Card key={report.id} className="p-6" data-testid={`report-card-${report.id}`}>
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-foreground mb-2">
-                            {report.test_name}
-                          </h3>
-                          <p className="text-sm text-slate-600 mb-4">
-                            Report Date: {new Date(report.report_date).toLocaleDateString()}
-                          </p>
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-600">
-                            <CheckCircle className="w-3 h-3" />
-                            {report.status}
-                          </span>
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="text-lg font-semibold text-foreground">
+                              {report.test_name}
+                            </h3>
+                            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                              report.status === 'ready' ? 'bg-green-50 text-green-600' :
+                              report.status === 'processing' ? 'bg-blue-50 text-blue-600' :
+                              'bg-yellow-50 text-yellow-600'
+                            }`}>
+                              {report.status === 'ready' && <CheckCircle className="w-3 h-3" />}
+                              {report.status === 'processing' && <Clock className="w-3 h-3" />}
+                              {report.status}
+                            </span>
+                          </div>
+                          <div className="space-y-1 text-sm text-slate-600">
+                            <p><span className="font-semibold">Report ID:</span> {report.report_id}</p>
+                            <p><span className="font-semibold">Booking ID:</span> {report.booking_id}</p>
+                            <p><span className="font-semibold">Date:</span> {new Date(report.report_date).toLocaleDateString()}</p>
+                            {report.remarks && (
+                              <p className="mt-2 p-2 bg-blue-50 rounded text-xs">
+                                <span className="font-semibold text-blue-900">Note:</span> {report.remarks}
+                              </p>
+                            )}
+                          </div>
                         </div>
+                      </div>
+                      {report.status === 'ready' ? (
                         <Button
-                          variant="outline"
-                          size="sm"
-                          className="flex items-center gap-2"
+                          onClick={async () => {
+                            try {
+                              const response = await reportsAPI.download(report.id);
+                              const url = window.URL.createObjectURL(new Blob([response.data]));
+                              const link = document.createElement('a');
+                              link.href = url;
+                              link.setAttribute('download', report.file_name);
+                              document.body.appendChild(link);
+                              link.click();
+                              link.remove();
+                            } catch (error) {
+                              console.error('Download failed:', error);
+                            }
+                          }}
+                          className="w-full bg-primary hover:bg-primary-hover text-white flex items-center justify-center gap-2"
                           data-testid={`download-report-${report.id}`}
                         >
                           <Download className="w-4 h-4" />
-                          Download
+                          Download Report
                         </Button>
-                      </div>
+                      ) : (
+                        <div className="text-center py-2 text-sm text-slate-500">
+                          Report is being {report.status}...
+                        </div>
+                      )}
                     </Card>
                   ))}
                 </div>
