@@ -576,15 +576,29 @@ async def get_admin_stats(admin: Dict[str, Any] = Depends(get_admin_user)):
     
     pending_reports = await db.appointments.count_documents({
         "payment_status": "completed",
-        "status": {"$ne": "completed"}
+        "status": {"$ne": "completed"},
+        "report_uploaded": {"$ne": True}
     })
+    
+    total_reports_uploaded = await db.reports.count_documents({})
+    
+    today = datetime.now(timezone.utc).date().isoformat()
+    reports_ready_today = await db.reports.count_documents({
+        "status": "ready",
+        "report_date": {"$regex": f"^{today}"}
+    })
+    
+    processing_reports = await db.reports.count_documents({"status": "processing"})
     
     return {
         "total_bookings": total_bookings,
         "pending_appointments": pending_appointments,
         "completed_appointments": completed_appointments,
         "total_revenue": total_revenue,
-        "pending_reports": pending_reports
+        "pending_reports": pending_reports,
+        "total_reports_uploaded": total_reports_uploaded,
+        "reports_ready_today": reports_ready_today,
+        "processing_reports": processing_reports
     }
 
 
