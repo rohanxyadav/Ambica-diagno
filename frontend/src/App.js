@@ -56,6 +56,14 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/book-appointment" element={<BookAppointment />} />
           <Route
+            path="/my-reports"
+            element={
+              <PrivateRoute>
+                <MyReports />
+              </PrivateRoute>
+            }
+          />
+          <Route
             path="/dashboard"
             element={
               <PrivateRoute>
