@@ -118,56 +118,56 @@ const MyReports = () => {
       <div className="pt-24 pb-16 page-transition">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4" data-testid="reports-page-title">
+          <div className="mb-8 fade-in">
+            <h1 className="text-4xl md:text-5xl font-heading font-bold bg-gradient-to-r from-[#2A7DE1] to-[#1E5FBC] bg-clip-text text-transparent mb-4" data-testid="reports-page-title">
               My Test Reports
             </h1>
-            <p className="text-base md:text-lg text-slate-600">
+            <p className="text-lg text-slate-600">
               View and download all your diagnostic test reports in one place
             </p>
           </div>
 
-          {/* Stats Cards */}
+          {/* Premium Summary Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Card className="p-6">
+            <div className="summary-card stagger-item">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600 mb-1">Total Reports</p>
-                  <p className="text-3xl font-bold text-primary">{reports.length}</p>
+                  <p className="text-sm font-medium text-slate-600 mb-1">Total Reports</p>
+                  <p className="text-4xl font-bold text-[#2A7DE1]">{reports.length}</p>
                 </div>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-primary" />
+                <div className="w-14 h-14 bg-gradient-to-br from-[#2A7DE1] to-[#1E5FBC] rounded-2xl flex items-center justify-center shadow-lg">
+                  <FileText className="w-7 h-7 text-white" />
                 </div>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-6">
+            <div className="summary-card stagger-item">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600 mb-1">Ready to Download</p>
-                  <p className="text-3xl font-bold text-green-600">
+                  <p className="text-sm font-medium text-slate-600 mb-1">Ready to Download</p>
+                  <p className="text-4xl font-bold text-[#10B981]">
                     {reports.filter(r => r.status === 'ready').length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-green-600" />
+                <div className="w-14 h-14 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-2xl flex items-center justify-center shadow-lg">
+                  <CheckCircle className="w-7 h-7 text-white" />
                 </div>
               </div>
-            </Card>
+            </div>
 
-            <Card className="p-6">
+            <div className="summary-card stagger-item">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-600 mb-1">Processing</p>
-                  <p className="text-3xl font-bold text-blue-600">
+                  <p className="text-sm font-medium text-slate-600 mb-1">Processing</p>
+                  <p className="text-4xl font-bold text-[#3B82F6]">
                     {reports.filter(r => r.status === 'processing' || r.status === 'pending').length}
                   </p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-blue-600" />
+                <div className="w-14 h-14 bg-gradient-to-br from-[#3B82F6] to-[#2563EB] rounded-2xl flex items-center justify-center shadow-lg">
+                  <Clock className="w-7 h-7 text-white" />
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
 
           {/* Search and Filter */}
