@@ -1,0 +1,137 @@
+{
+  "brand_identity": {
+    "name": "Ambica Diagnostic Center",
+    "tone": "Professional, Trustworthy, Hygienic, Modern, Tech-Forward",
+    "theme_mode": "light",
+    "primary_archetype": "The Performance Pro (Medical Edition) - Precision & Clarity"
+  },
+  "typography": {
+    "font_family_headings": "Plus Jakarta Sans, sans-serif",
+    "font_family_body": "Inter, sans-serif",
+    "scaling": {
+      "h1": "text-4xl md:text-6xl font-bold tracking-tight leading-tight",
+      "h2": "text-3xl md:text-4xl font-semibold tracking-tight",
+      "h3": "text-xl md:text-2xl font-semibold",
+      "body": "text-base md:text-lg text-slate-600 leading-relaxed",
+      "small": "text-sm text-slate-500 font-medium"
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "base": "#023E8A",
+        "hover": "#002855",
+        "description": "Deep Ocean Blue - Communicates authority and trust"
+      },
+      "secondary": {
+        "base": "#00B4D8",
+        "foreground": "#FFFFFF",
+        "description": "Cyan/Teal - Represents wellness, technology, and hygiene"
+      },
+      "accent": {
+        "base": "#48CAE4",
+        "description": "Soft Cyan - For backgrounds and gentle highlights"
+      },
+      "neutral": {
+        "background": "#F8F9FA",
+        "surface": "#FFFFFF",
+        "text_primary": "#0F172A",
+        "text_secondary": "#475569",
+        "border": "#E2E8F0"
+      },
+      "semantic": {
+        "success": "#10B981",
+        "warning": "#F59E0B",
+        "error": "#EF4444",
+        "info": "#3B82F6"
+      }
+    },
+    "gradients": {
+      "hero_overlay": "bg-gradient-to-r from-blue-900/90 to-blue-800/80",
+      "card_highlight": "bg-gradient-to-br from-white to-blue-50"
+    }
+  },
+  "layout_system": {
+    "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+    "spacing": {
+      "section_padding": "py-16 md:py-24",
+      "element_gap": "gap-6 md:gap-8"
+    },
+    "grid_strategy": "Use Bento Grids for services/features. MODE A for marketing pages, MODE B for dashboard.",
+    "border_radius": "rounded-xl md:rounded-2xl"
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#023E8A] hover:bg-[#002855] text-white rounded-lg px-8 py-3 font-medium transition-all shadow-md hover:shadow-lg active:scale-95",
+      "secondary": "bg-white text-[#023E8A] border border-[#023E8A] hover:bg-blue-50 rounded-lg px-8 py-3 font-medium transition-all",
+      "ghost": "text-slate-600 hover:text-[#023E8A] hover:bg-blue-50/50 rounded-lg px-4 py-2"
+    },
+    "cards": {
+      "style": "bg-white border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl overflow-hidden",
+      "padding": "p-6 md:p-8"
+    },
+    "inputs": {
+      "style": "flex h-12 w-full rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B4D8] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+    },
+    "badges": {
+      "style": "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": "shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]",
+    "glassmorphism": "bg-white/80 backdrop-blur-md border border-white/20 shadow-xl",
+    "micro_interactions": "Hover states should lift elements slightly (-translate-y-1). Buttons should have active scale down.",
+    "icons": "Use 'lucide-react' for UI icons. Use 'phosphor-icons' (Duotone) for feature highlights."
+  },
+  "image_urls": {
+    "hero_main": {
+      "url": "https://images.pexels.com/photos/3908179/pexels-photo-3908179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Lab technician using microscope in modern diagnostic center",
+      "category": "Hero Section"
+    },
+    "about_us": {
+      "url": "https://images.pexels.com/photos/7578808/pexels-photo-7578808.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Doctor consulting with patient",
+      "category": "About Section"
+    },
+    "services_mri": {
+      "url": "https://images.pexels.com/photos/13176358/pexels-photo-13176358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Modern MRI Machine",
+      "category": "Services"
+    },
+    "services_lab": {
+      "url": "https://images.unsplash.com/photo-1669930605340-801a0be1f5a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBtZWRpY2FsJTIwbGFib3JhdG9yeSUyMGludGVyaW9yJTIwYmx1ZSUyMHdoaXRlJTIwY2xlYW58ZW58MHx8fHwxNzcxOTMxMTg3fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Advanced Laboratory Equipment",
+      "category": "Services"
+    },
+    "doctor_profile": {
+      "url": "https://images.pexels.com/photos/8376318/pexels-photo-8376318.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "alt": "Female Doctor Online Consultation",
+      "category": "Team/Doctors"
+    },
+    "patient_testimonial": {
+      "url": "https://images.unsplash.com/photo-1659353887804-fc7f9313021a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHw0fHxkb2N0b3IlMjBjb25zdWx0YXRpb24lMjBwYXRpZW50JTIwaGFwcHl8ZW58MHx8fHwxNzcxOTMxMTg4fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Happy Patient",
+      "category": "Testimonials"
+    }
+  },
+  "instructions_to_main_agent": [
+    "INSTALL_DEPENDENCIES: npm install lucide-react framer-motion clsx tailwind-merge @radix-ui/react-slot date-fns react-day-picker",
+    "THEME_SETUP: Ensure 'Plus Jakarta Sans' is imported in index.css from Google Fonts.",
+    "NAVIGATION: Create a sticky navbar with transparency that becomes solid white on scroll.",
+    "HERO_SECTION: Use a split layout. Text on left, large image on right (or vice versa). Add a 'Book Appointment' card floating over the image.",
+    "booking_logic: Implement the 6:00 AM - 8:30 AM specific slot logic carefully. Use a clear visual selector for time slots.",
+    "dashboard: The patient dashboard must be card-based (Bento Grid). 'Upcoming Appointments', 'Latest Reports', 'Payment History' should be the main widgets.",
+    "mobile_responsiveness: Ensure the booking form is easily usable on mobile (large touch targets, native inputs where appropriate).",
+    "accessibility: Ensure high contrast for text (slate-600/slate-900). Do not use light grey text on white backgrounds.",
+    "TESTING: Add 'data-testid' to all buttons, inputs, and links."
+  ],
+  "universal_guidelines": [
+    "Don't make generic centered layouts.",
+    "Create depth through layered design elements.",
+    "Use glass-morphism effects sparingly but effectively (e.g., booking overlay).",
+    "Use 2-3x more spacing than typical designs.",
+    "Every interaction needs micro-animations (hover, focus, active).",
+    "Never use AI assistant Emoji characters."
+  ]
+}
