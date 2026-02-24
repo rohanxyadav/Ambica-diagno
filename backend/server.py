@@ -330,9 +330,14 @@ async def get_available_slots(date: str):
 
 
 @api_router.post("/appointments")
-async def create_appointment(appointment: Appointment, current_user: Dict[str, Any] = Depends(get_current_user)):
+async def create_appointment(appointment_data: AppointmentCreate, current_user: Dict[str, Any] = Depends(get_current_user)):
+    appointment = Appointment(
+        **appointment_data.model_dump(),
+        user_id=current_user["id"],
+        payment_status="pending",
+        status="pending"
+    )
     appointment_doc = appointment.model_dump()
-    appointment_doc["user_id"] = current_user["id"]
     appointment_doc["created_at"] = appointment_doc["created_at"].isoformat()
     
     await db.appointments.insert_one(appointment_doc)
