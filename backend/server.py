@@ -126,13 +126,24 @@ class Appointment(BaseModel):
 class Report(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    user_id: str
+    report_id: str = Field(default_factory=lambda: f"REP{uuid.uuid4().hex[:8].upper()}")
+    patient_id: str
+    patient_name: str
     appointment_id: str
-    file_path: str
+    booking_id: str
     test_name: str
-    report_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    file_url: str
+    file_name: str
+    remarks: Optional[str] = ""
     status: str = "ready"
-    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    report_date: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    uploaded_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class ReportUpload(BaseModel):
+    patient_id: str
+    appointment_id: str
+    remarks: Optional[str] = ""
+    status: str = "ready"
 
 class Payment(BaseModel):
     model_config = ConfigDict(extra="ignore")
