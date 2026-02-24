@@ -313,6 +313,10 @@ const AdminDashboard = () => {
               </div>
             </TabsContent>
 
+            <TabsContent value="reports" className="space-y-6">
+              <ReportsManagement />
+            </TabsContent>
+
             <TabsContent value="tests" className="space-y-6">
               <h2 className="text-2xl font-heading font-semibold text-foreground">
                 Tests Management ({tests.length})
