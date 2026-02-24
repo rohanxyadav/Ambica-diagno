@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import MyReports from './pages/MyReports';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
