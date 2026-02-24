@@ -171,16 +171,16 @@ const MyReports = () => {
           </div>
 
           {/* Search and Filter */}
-          <Card className="p-6 mb-8">
+          <div className="premium-card p-6 mb-8 fade-in-delay">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                 <Input
                   type="text"
                   placeholder="Search by test name, booking ID, or report ID..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 h-12 border-slate-200 focus:border-[#2A7DE1] focus:ring-[#2A7DE1] rounded-xl"
                   data-testid="reports-search-input"
                 />
               </div>
@@ -188,7 +188,7 @@ const MyReports = () => {
                 <Button
                   variant={filterStatus === 'all' ? 'default' : 'outline'}
                   onClick={() => setFilterStatus('all')}
-                  className={filterStatus === 'all' ? 'bg-primary text-white' : ''}
+                  className={`interactive-button rounded-xl ${filterStatus === 'all' ? 'bg-[#2A7DE1] text-white' : 'border-slate-200 hover:border-[#2A7DE1]'}`}
                   data-testid="filter-all"
                 >
                   All
@@ -196,7 +196,7 @@ const MyReports = () => {
                 <Button
                   variant={filterStatus === 'ready' ? 'default' : 'outline'}
                   onClick={() => setFilterStatus('ready')}
-                  className={filterStatus === 'ready' ? 'bg-green-600 text-white hover:bg-green-700' : ''}
+                  className={`interactive-button rounded-xl ${filterStatus === 'ready' ? 'bg-[#10B981] text-white' : 'border-slate-200 hover:border-[#10B981]'}`}
                   data-testid="filter-ready"
                 >
                   Ready
@@ -204,14 +204,14 @@ const MyReports = () => {
                 <Button
                   variant={filterStatus === 'processing' ? 'default' : 'outline'}
                   onClick={() => setFilterStatus('processing')}
-                  className={filterStatus === 'processing' ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}
+                  className={`interactive-button rounded-xl ${filterStatus === 'processing' ? 'bg-[#3B82F6] text-white' : 'border-slate-200 hover:border-[#3B82F6]'}`}
                   data-testid="filter-processing"
                 >
                   Processing
                 </Button>
               </div>
             </div>
-          </Card>
+          </div>
 
           {/* Reports List */}
           {filteredReports.length === 0 ? (
