@@ -136,18 +136,6 @@ const AdminDashboard = () => {
                 <Card className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-slate-600 mb-1">Pending Appointments</p>
-                      <p className="text-3xl font-bold text-yellow-600">{stats?.pending_appointments || 0}</p>
-                    </div>
-                    <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <Activity className="w-6 h-6 text-yellow-600" />
-                    </div>
-                  </div>
-                </Card>
-
-                <Card className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
                       <p className="text-sm text-slate-600 mb-1">Total Revenue</p>
                       <p className="text-3xl font-bold text-green-600 flex items-center">
                         <IndianRupee className="w-6 h-6" />
@@ -163,11 +151,47 @@ const AdminDashboard = () => {
                 <Card className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
+                      <p className="text-sm text-slate-600 mb-1">Reports Uploaded</p>
+                      <p className="text-3xl font-bold text-blue-600">{stats?.total_reports_uploaded || 0}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Upload className="w-6 h-6 text-blue-600" />
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
                       <p className="text-sm text-slate-600 mb-1">Pending Reports</p>
                       <p className="text-3xl font-bold text-red-600">{stats?.pending_reports || 0}</p>
                     </div>
                     <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                       <FileText className="w-6 h-6 text-red-600" />
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-slate-600 mb-1">Reports Ready Today</p>
+                      <p className="text-3xl font-bold text-green-600">{stats?.reports_ready_today || 0}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-green-600" />
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-slate-600 mb-1">Processing Reports</p>
+                      <p className="text-3xl font-bold text-yellow-600">{stats?.processing_reports || 0}</p>
+                    </div>
+                    <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                      <Activity className="w-6 h-6 text-yellow-600" />
                     </div>
                   </div>
                 </Card>
