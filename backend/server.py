@@ -447,62 +447,122 @@ async def get_payment_history(current_user: Dict[str, Any] = Depends(get_current
     return payments
 
 
+@api_router.get("/admin/search-patients")
+async def search_patients(query: str, admin: Dict[str, Any] = Depends(get_admin_user)):
+    search_filter = {
+        "$or": [
+            {"user_name": {"$regex": query, "$options": "i"}},
+            {"user_phone": {"$regex": query, "$options": "i"}},
+            {"booking_id": {"$regex": query, "$options": "i"}}
+        ],
+        "status": "confirmed"
+    }
+    appointments = await db.appointments.find(search_filter, {"_id": 0}).to_list(100)
+    return appointments
+
+
 @api_router.post("/reports/upload")
 async def upload_report(
-    user_id: str,
-    appointment_id: str,
-    test_name: str,
+    patient_id: str = File(...),
+    appointment_id: str = File(...),
+    remarks: str = File(default=""),
+    status: str = File(default="ready"),
     file: UploadFile = File(...),
     admin: Dict[str, Any] = Depends(get_admin_user)
 ):
     try:
+        appointment = await db.appointments.find_one({"id": appointment_id}, {"_id": 0})
+        if not appointment:
+            raise HTTPException(status_code=404, detail="Appointment not found")
+        
         reports_dir = Path("/app/backend/reports")
         reports_dir.mkdir(exist_ok=True)
         
         file_extension = Path(file.filename).suffix
-        file_name = f"{user_id}_{appointment_id}_{uuid.uuid4().hex[:8]}{file_extension}"
-        file_path = reports_dir / file_name
+        if file_extension.lower() not in ['.pdf', '.jpg', '.jpeg', '.png']:
+            raise HTTPException(status_code=400, detail="Only PDF and image files are allowed")
+        
+        unique_filename = f"{appointment['booking_id']}_{uuid.uuid4().hex[:8]}{file_extension}"
+        file_path = reports_dir / unique_filename
         
         contents = await file.read()
         with open(file_path, "wb") as f:
             f.write(contents)
         
         report = Report(
-            user_id=user_id,
+            patient_id=patient_id,
+            patient_name=appointment["user_name"],
             appointment_id=appointment_id,
-            file_path=str(file_path),
-            test_name=test_name,
-            status="ready"
+            booking_id=appointment["booking_id"],
+            test_name=appointment["test_name"],
+            file_url=f"/reports/{unique_filename}",
+            file_name=unique_filename,
+            remarks=remarks,
+            status=status
         )
         
         report_doc = report.model_dump()
         report_doc["report_date"] = report_doc["report_date"].isoformat()
-        report_doc["created_at"] = report_doc["created_at"].isoformat()
+        report_doc["uploaded_at"] = report_doc["uploaded_at"].isoformat()
         await db.reports.insert_one(report_doc)
         
         await db.appointments.update_one(
             {"id": appointment_id},
-            {"$set": {"status": "completed"}}
+            {"$set": {"status": "completed", "report_uploaded": True}}
         )
         
         return {"message": "Report uploaded successfully", "report": report}
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Report upload failed: {str(e)}")
 
 
 @api_router.get("/reports")
 async def get_user_reports(current_user: Dict[str, Any] = Depends(get_current_user)):
-    reports = await db.reports.find({"user_id": current_user["id"]}, {"_id": 0}).sort("report_date", -1).to_list(1000)
+    reports = await db.reports.find({"patient_id": current_user["id"]}, {"_id": 0}).sort("report_date", -1).to_list(1000)
+    return reports
+
+
+@api_router.get("/reports/all")
+async def get_all_reports(admin: Dict[str, Any] = Depends(get_admin_user)):
+    reports = await db.reports.find({}, {"_id": 0}).sort("uploaded_at", -1).to_list(1000)
     return reports
 
 
 @api_router.get("/reports/{report_id}/download")
 async def download_report(report_id: str, current_user: Dict[str, Any] = Depends(get_current_user)):
-    report = await db.reports.find_one({"id": report_id, "user_id": current_user["id"]}, {"_id": 0})
+    report = await db.reports.find_one({"id": report_id}, {"_id": 0})
     if not report:
         raise HTTPException(status_code=404, detail="Report not found")
     
-    return {"file_path": report["file_path"], "message": "Report available for download"}
+    if report["patient_id"] != current_user["id"] and current_user.get("role") != "admin":
+        raise HTTPException(status_code=403, detail="Access denied")
+    
+    file_path = Path("/app/backend/reports") / report["file_name"]
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="Report file not found")
+    
+    from fastapi.responses import FileResponse
+    return FileResponse(
+        path=str(file_path),
+        filename=report["file_name"],
+        media_type="application/pdf"
+    )
+
+
+@api_router.delete("/reports/{report_id}")
+async def delete_report(report_id: str, admin: Dict[str, Any] = Depends(get_admin_user)):
+    report = await db.reports.find_one({"id": report_id}, {"_id": 0})
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    
+    file_path = Path("/app/backend/reports") / report["file_name"]
+    if file_path.exists():
+        file_path.unlink()
+    
+    await db.reports.delete_one({"id": report_id})
+    return {"message": "Report deleted successfully"}
 
 
 @api_router.get("/admin/stats")
