@@ -41,19 +41,8 @@ export const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link to="/" className="flex items-center space-x-3" data-testid="logo-link">
-            <div className="relative">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#023E8A] to-[#0077B6] rounded-lg flex items-center justify-center shadow-md">
-                <Activity className="w-7 h-7 text-white" strokeWidth={2.5} />
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-[#FF6B35] to-[#F77F00] rounded-full border-2 border-white"></div>
-            </div>
-            <div>
-              <h1 className="text-2xl font-heading font-bold bg-gradient-to-r from-[#023E8A] to-[#0077B6] bg-clip-text text-transparent" style={{fontFamily: "'Brush Script MT', cursive"}}>
-                Ambica
-              </h1>
-              <p className="text-xs font-semibold text-[#FF6B35] tracking-wide">DIAGNOSTIC CENTRE</p>
-            </div>
+          <Link to="/" className="flex items-center" data-testid="logo-link">
+            <Logo />
           </Link>
 
           <nav className="hidden md:flex items-center space-x-6">
