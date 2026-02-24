@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/Layout/Header';
 import { Footer } from '../components/Layout/Footer';
-import { adminAPI, appointmentsAPI, testsAPI, packagesAPI, membershipsAPI, reportsAPI } from '../utils/api';
+import { adminAPI, appointmentsAPI, testsAPI, packagesAPI, membershipsAPI } from '../utils/api';
 import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { Calendar, IndianRupee, Users, FileText, Activity, CheckCircle, XCircle } from 'lucide-react';
+import { Calendar, IndianRupee, Users, FileText, Activity, CheckCircle, XCircle, Upload } from 'lucide-react';
 import { toast } from 'sonner';
+import ReportsManagement from '../components/Admin/ReportsManagement';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
