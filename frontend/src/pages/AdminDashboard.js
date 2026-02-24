@@ -110,9 +110,10 @@ const AdminDashboard = () => {
           </div>
 
           <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-8">
-            <TabsList className="grid grid-cols-5 w-full max-w-3xl">
+            <TabsList className="grid grid-cols-6 w-full max-w-4xl">
               <TabsTrigger value="overview" data-testid="tab-overview">Overview</TabsTrigger>
               <TabsTrigger value="appointments" data-testid="tab-appointments">Appointments</TabsTrigger>
+              <TabsTrigger value="reports" data-testid="tab-reports">Reports</TabsTrigger>
               <TabsTrigger value="tests" data-testid="tab-tests">Tests</TabsTrigger>
               <TabsTrigger value="packages" data-testid="tab-packages">Packages</TabsTrigger>
               <TabsTrigger value="users" data-testid="tab-users">Users</TabsTrigger>
