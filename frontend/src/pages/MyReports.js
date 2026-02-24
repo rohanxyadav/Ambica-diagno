@@ -215,12 +215,12 @@ const MyReports = () => {
 
           {/* Reports List */}
           {filteredReports.length === 0 ? (
-            <Card className="p-12 text-center">
-              <FileText className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">
+            <div className="premium-card p-16 text-center fade-in">
+              <FileText className="w-20 h-20 text-slate-300 mx-auto mb-6" />
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">
                 {searchQuery || filterStatus !== 'all' ? 'No reports found' : 'No reports available yet'}
               </h3>
-              <p className="text-slate-600 mb-6">
+              <p className="text-slate-600 mb-8 text-lg">
                 {searchQuery || filterStatus !== 'all'
                   ? 'Try adjusting your search or filter'
                   : 'Your test reports will appear here once they are uploaded by our team'}
@@ -228,44 +228,49 @@ const MyReports = () => {
               {!searchQuery && filterStatus === 'all' && (
                 <Button
                   onClick={() => navigate('/book-appointment')}
-                  className="bg-primary hover:bg-primary-hover text-white"
+                  className="interactive-button bg-gradient-to-r from-[#2A7DE1] to-[#1E5FBC] hover:from-[#1E5FBC] hover:to-[#2A7DE1] text-white px-8 py-3 text-lg"
                 >
                   Book a Test
                 </Button>
               )}
-            </Card>
+            </div>
           ) : (
             <div className="grid lg:grid-cols-2 gap-6">
-              {filteredReports.map((report) => (
-                <Card key={report.id} className="p-6 hover:shadow-lg transition-shadow" data-testid={`report-card-${report.id}`}>
+              {filteredReports.map((report, index) => (
+                <div key={report.id} className={`report-card p-6 stagger-item`} style={{animationDelay: `${0.1 * index}s`}} data-testid={`report-card-${report.id}`}>
                   <div className="space-y-4">
                     {/* Header */}
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-foreground mb-2">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
                           {report.test_name}
                         </h3>
-                        {getStatusBadge(report.status)}
+                        <div className={`inline-flex items-center gap-2 status-badge-${report.status}`}>
+                          {report.status === 'ready' && <CheckCircle className="w-4 h-4" />}
+                          {report.status === 'processing' && <Clock className="w-4 h-4" />}
+                          {report.status === 'pending' && <AlertCircle className="w-4 h-4" />}
+                          {report.status.toUpperCase()}
+                        </div>
                       </div>
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-4">
-                        <FileText className="w-6 h-6 text-primary" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-[#2A7DE1] to-[#1E5FBC] rounded-2xl flex items-center justify-center flex-shrink-0 ml-4 shadow-lg">
+                        <FileText className="w-7 h-7 text-white" />
                       </div>
                     </div>
 
                     {/* Report Details */}
-                    <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-slate-100">
                       <div className="space-y-1">
-                        <p className="text-slate-500 text-xs font-medium">Report ID</p>
-                        <p className="font-semibold text-foreground">{report.report_id}</p>
+                        <p className="text-xs font-medium text-slate-500 uppercase">Report ID</p>
+                        <p className="font-mono text-sm font-semibold text-gray-900 bg-blue-50 px-2 py-1 rounded inline-block">{report.report_id}</p>
                       </div>
                       <div className="space-y-1">
-                        <p className="text-slate-500 text-xs font-medium">Booking ID</p>
-                        <p className="font-semibold text-foreground">{report.booking_id}</p>
+                        <p className="text-xs font-medium text-slate-500 uppercase">Booking ID</p>
+                        <p className="font-mono text-sm font-semibold text-gray-900 bg-blue-50 px-2 py-1 rounded inline-block">{report.booking_id}</p>
                       </div>
                       <div className="space-y-1">
-                        <p className="text-slate-500 text-xs font-medium">Report Date</p>
-                        <p className="text-slate-600 flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
+                        <p className="text-xs font-medium text-slate-500 uppercase">Report Date</p>
+                        <p className="text-sm text-slate-600 flex items-center gap-1 font-medium">
+                          <Calendar className="w-3 h-3 text-[#2A7DE1]" />
                           {new Date(report.report_date).toLocaleDateString('en-IN', {
                             day: 'numeric',
                             month: 'short',
@@ -274,12 +279,11 @@ const MyReports = () => {
                         </p>
                       </div>
                       <div className="space-y-1">
-                        <p className="text-slate-500 text-xs font-medium">Uploaded</p>
-                        <p className="text-slate-600">
+                        <p className="text-xs font-medium text-slate-500 uppercase">Uploaded</p>
+                        <p className="text-sm text-slate-600 font-medium">
                           {new Date(report.uploaded_at).toLocaleDateString('en-IN', {
                             day: 'numeric',
-                            month: 'short',
-                            year: 'numeric'
+                            month: 'short'
                           })}
                         </p>
                       </div>
@@ -287,9 +291,12 @@ const MyReports = () => {
 
                     {/* Remarks */}
                     {report.remarks && (
-                      <div className="p-3 bg-blue-50 rounded-lg border border-blue-100">
-                        <p className="text-xs font-semibold text-blue-900 mb-1">Doctor's Note:</p>
-                        <p className="text-sm text-blue-800">{report.remarks}</p>
+                      <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border border-blue-200">
+                        <p className="text-xs font-semibold text-[#2A7DE1] mb-2 flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          Doctor's Note
+                        </p>
+                        <p className="text-sm text-gray-900 leading-relaxed">{report.remarks}</p>
                       </div>
                     )}
 
@@ -298,7 +305,7 @@ const MyReports = () => {
                       {report.status === 'ready' ? (
                         <Button
                           onClick={() => handleDownload(report)}
-                          className="w-full bg-primary hover:bg-primary-hover text-white flex items-center justify-center gap-2"
+                          className="w-full interactive-button pulse-button bg-gradient-to-r from-[#10B981] to-[#059669] hover:from-[#059669] hover:to-[#10B981] text-white flex items-center justify-center gap-2 py-6 text-base font-semibold shadow-lg"
                           size="lg"
                           data-testid={`download-report-${report.id}`}
                         >
@@ -306,9 +313,9 @@ const MyReports = () => {
                           Download Report
                         </Button>
                       ) : (
-                        <div className="text-center py-3 bg-slate-50 rounded-lg">
-                          <Clock className="w-5 h-5 text-slate-400 mx-auto mb-1" />
-                          <p className="text-sm text-slate-600">
+                        <div className="text-center py-4 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200">
+                          <Clock className="w-6 h-6 text-slate-400 mx-auto mb-2" />
+                          <p className="text-sm font-medium text-slate-600">
                             Report is being {report.status}...
                           </p>
                           <p className="text-xs text-slate-500 mt-1">
@@ -318,7 +325,7 @@ const MyReports = () => {
                       )}
                     </div>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           )}
