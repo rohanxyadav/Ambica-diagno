@@ -192,7 +192,7 @@ const BookAppointment = () => {
     <div className="min-h-screen bg-neutral-background">
       <Header />
 
-      <div className="pt-24 pb-16">
+      <div className="pt-28 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-4" data-testid="booking-page-title">
