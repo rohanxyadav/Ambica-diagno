@@ -33,6 +33,10 @@ export const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const userNavLinks = user && user.role === 'patient' ? [
+    { name: 'My Reports', path: '/my-reports' },
+  ] : [];
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
