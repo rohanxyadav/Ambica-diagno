@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Activity } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import Logo from '../Logo';
 
 export const Footer = () => {
   return (
@@ -8,19 +9,8 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="relative">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#023E8A] to-[#0077B6] rounded-lg flex items-center justify-center shadow-lg">
-                  <Activity className="w-7 h-7 text-white" strokeWidth={2.5} />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-[#FF6B35] to-[#F77F00] rounded-full border-2 border-slate-900"></div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-heading font-bold text-white" style={{fontFamily: "'Brush Script MT', cursive"}}>
-                  Ambica
-                </h3>
-                <p className="text-xs font-semibold text-[#FF6B35] tracking-wide">DIAGNOSTIC CENTRE</p>
-              </div>
+            <div className="mb-4">
+              <Logo />
             </div>
             <p className="text-sm text-slate-400">
               Your trusted partner for accurate diagnostic services and comprehensive health checkups.
