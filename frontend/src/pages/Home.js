@@ -51,47 +51,48 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-background">
+    <div className="min-h-screen bg-white">
       <Header />
 
-      <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl font-heading font-bold text-foreground leading-tight" data-testid="hero-heading">
+              <h1 className="text-4xl md:text-6xl font-heading font-bold text-gray-900 leading-tight" data-testid="hero-heading">
                 Your Health,
                 <br />
-                <span className="text-primary">Our Priority</span>
+                <span className="text-[#2A7DE1]">Our Priority</span>
               </h1>
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                 Get accurate diagnostic services from India's most trusted diagnostic center.
                 Book your appointment today and take the first step towards better health.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Link to="/book-appointment" data-testid="cta-book-appointment">
-                  <Button size="lg" className="bg-primary hover:bg-primary-hover text-white px-8 py-3 text-base">
+                  <Button size="lg" className="bg-[#2A7DE1] hover:bg-[#1E5FBC] text-white px-10 py-6 text-lg font-semibold shadow-lg border-2 border-[#2A7DE1] w-full sm:w-auto">
                     Book Appointment
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                    <ArrowRight className="ml-2 w-6 h-6" />
                   </Button>
                 </Link>
                 <Link to="/tests" data-testid="cta-browse-tests">
-                  <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-blue-50 px-8 py-3 text-base">
+                  <Button size="lg" variant="outline" className="border-2 border-[#2A7DE1] text-[#2A7DE1] hover:bg-blue-50 px-10 py-6 text-lg font-semibold w-full sm:w-auto">
                     Browse Tests
+                    <ArrowRight className="ml-2 w-6 h-6" />
                   </Button>
                 </Link>
               </div>
               <div className="flex items-center gap-8 pt-4">
                 <div>
-                  <p className="text-3xl font-bold text-primary">21+</p>
-                  <p className="text-sm text-slate-600">Years Experience</p>
+                  <p className="text-3xl font-bold text-[#2A7DE1]">21+</p>
+                  <p className="text-sm text-gray-700 font-medium">Years Experience</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-primary">3Lacs+</p>
-                  <p className="text-sm text-slate-600">Happy Patients</p>
+                  <p className="text-3xl font-bold text-[#2A7DE1]">3Lacs+</p>
+                  <p className="text-sm text-gray-700 font-medium">Happy Patients</p>
                 </div>
                 <div>
-                  <p className="text-3xl font-bold text-primary">24hrs</p>
-                  <p className="text-sm text-slate-600">Report Delivery</p>
+                  <p className="text-3xl font-bold text-[#2A7DE1]">24hrs</p>
+                  <p className="text-sm text-gray-700 font-medium">Report Delivery</p>
                 </div>
               </div>
             </div>
